@@ -1,0 +1,47 @@
+{
+  "current_tenant": "meena",
+  "tenants": {
+    "meena": {
+      "application": {
+        "db": {
+          "host": "localhost",
+          "port": "3306",
+          "user": "root",
+          "pass": "",
+          "db_name": "meena"
+        }
+      },
+      "ui": {
+        "main_ui": {
+          "title": "Meena Stocks Pvt. Ltd.",
+          "width": 1024,
+          "height": 520
+        }
+      },
+      "resources": {
+        "logo_res": "res/tenants/meena/logo.png"
+      }
+    },
+    "sahitya": {
+      "application": {
+        "db": {
+          "host": "localhost",
+          "port": "3306",
+          "user": "root",
+          "pass": "skmr",
+          "db_name": "stock_manage"
+        }
+      },
+      "ui": {
+        "main_ui": {
+          "title": "SKMR Stocks Pvt. Ltd.",
+          "width": 1024,
+          "height": 520
+        }
+      },
+      "resources": {
+        "logo_res": "res/tenants/sahitya/logo.png"
+      }
+    }
+  }
+}
