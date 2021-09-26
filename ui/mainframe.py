@@ -17,7 +17,7 @@ except ImportError:
 import ui.mainframe_support as mainframe_support
 from tkcalendar import DateEntry
 from ui.custom import custom_elements as ctk
-
+import service.radio_service
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -55,6 +55,7 @@ class mainframe:
     def __init__(self, top=None):
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
+
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
         _compcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -154,24 +155,23 @@ class mainframe:
         self.takeBackupBtn.configure(highlightcolor="black")
         self.takeBackupBtn.configure(pady="0")
         self.takeBackupBtn.configure(text='''Take Backup''')
-
-        userVar = tk.StringVar(top, "User")
-        adminVar = tk.StringVar(top, "Admin")
+        self.userVar = tk.StringVar(top, "User")
+        self.adminVar = tk.StringVar(top, "Admin")
         self.style.map('TRadiobutton', background=[('selected', _bgcolor), ('active', _ana2color)])
         self.radioAdmin = ttk.Radiobutton(top)
         self.radioAdmin.place(relx=0.65, rely=0.375, relwidth=0.091
                               , relheight=0.0, height=26)
         self.radioAdmin.configure(text='''Admin''')
+        self.radioAdmin.configure(variable=self.adminVar)
         self.radioAdmin.configure(value=1)
-        self.radioAdmin.configure(variable=adminVar)
-
+        self.radioAdmin.configure(command=lambda:service.radio_service.radio_action(self.adminVar.get()))
         self.radioUser = ttk.Radiobutton(top)
         self.radioUser.place(relx=0.775, rely=0.375, relwidth=0.091
                              , relheight=0.0, height=26)
         self.radioUser.configure(text='''User''')
-        self.radioUser.configure(variable=userVar)
+        self.radioUser.configure(variable=self.adminVar)
         self.radioUser.configure(value=2)
-
+        self.radioUser.configure(command=lambda:service.radio_service.radio_action(self.adminVar.get()))
         self.userEntry = ctk.EntryCustom(top, "UserName")
         self.userEntry.place(relx=0.65, rely=0.45, relheight=0.065
                              , relwidth=0.221)
