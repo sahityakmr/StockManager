@@ -52,7 +52,7 @@ def destroy_mainframe():
 
 
 class mainframe:
-    def __init__(self, top=None):
+    def __init__(self, mainUI=None):
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -68,22 +68,22 @@ class mainframe:
         self.style.configure('.', font="TkDefaultFont")
         self.style.map('.', background=[('selected', _compcolor), ('active', _ana2color)])
 
-        top.geometry("800x400+567+214")
-        top.minsize(148, 1)
-        top.maxsize(5764, 2335)
-        top.resizable(1, 1)
-        top.title("Mainframe")
-        top.configure(relief="ridge")
-        top.configure(background="#d9d9d9")
+        mainUI.geometry("800x400+567+214")
+        mainUI.minsize(148, 1)
+        mainUI.maxsize(5764, 2335)
+        mainUI.resizable(1, 1)
+        mainUI.title("Mainframe")
+        mainUI.configure(relief="ridge")
+        mainUI.configure(background="#d9d9d9")
 
-        self.menubar = tk.Menu(top, font="TkMenuFont", bg=_bgcolor, fg=_fgcolor)
-        top.configure(menu=self.menubar)
+        self.menubar = tk.Menu(mainUI, font="TkMenuFont", bg=_bgcolor, fg=_fgcolor)
+        mainUI.configure(menu=self.menubar)
 
-        self.verticalSeparator = ttk.Separator(top)
+        self.verticalSeparator = ttk.Separator(mainUI)
         self.verticalSeparator.place(relx=0.5, rely=0.375, relheight=0.5)
         self.verticalSeparator.configure(orient="vertical")
 
-        self.logoCanvas = tk.Canvas(top)
+        self.logoCanvas = tk.Canvas(mainUI)
         self.logoCanvas.place(relx=0.15, rely=0.025, relheight=0.25
                               , relwidth=0.125)
         self.logoCanvas.configure(background="#d9d9d9")
@@ -93,7 +93,7 @@ class mainframe:
         self.logoCanvas.configure(selectbackground="blue")
         self.logoCanvas.configure(selectforeground="white")
 
-        self.orgTitleLabel = tk.Label(top)
+        self.orgTitleLabel = tk.Label(mainUI)
         self.orgTitleLabel.place(relx=0.313, rely=0.05, height=80, width=400)
         self.orgTitleLabel.configure(background="#d9d9d9")
         self.orgTitleLabel.configure(disabledforeground="#a3a3a3")
@@ -101,7 +101,7 @@ class mainframe:
         self.orgTitleLabel.configure(foreground="#000000")
         self.orgTitleLabel.configure(text='''Company Name''')
 
-        self.enrollAdminBtn = tk.Button(top)
+        self.enrollAdminBtn = tk.Button(mainUI)
         self.enrollAdminBtn.place(relx=0.15, rely=0.4, height=33, width=200)
         self.enrollAdminBtn.configure(activebackground="#ececec")
         self.enrollAdminBtn.configure(activeforeground="#000000")
@@ -114,7 +114,7 @@ class mainframe:
         self.enrollAdminBtn.configure(pady="0")
         self.enrollAdminBtn.configure(text='''Enroll Admin''')
 
-        self.enrollUserBtn = tk.Button(top)
+        self.enrollUserBtn = tk.Button(mainUI)
         self.enrollUserBtn.place(relx=0.15, rely=0.525, height=33, width=200)
         self.enrollUserBtn.configure(activebackground="#ececec")
         self.enrollUserBtn.configure(activeforeground="#000000")
@@ -127,7 +127,7 @@ class mainframe:
         self.enrollUserBtn.configure(pady="0")
         self.enrollUserBtn.configure(text='''Enroll User''')
 
-        self.deleteUserBtn = tk.Button(top)
+        self.deleteUserBtn = tk.Button(mainUI)
         self.deleteUserBtn.place(relx=0.15, rely=0.65, height=33, width=200)
         self.deleteUserBtn.configure(activebackground="#ececec")
         self.deleteUserBtn.configure(activeforeground="#000000")
@@ -141,7 +141,7 @@ class mainframe:
         self.deleteUserBtn.configure(pady="0")
         self.deleteUserBtn.configure(text='''Delete User''')
 
-        self.takeBackupBtn = tk.Button(top)
+        self.takeBackupBtn = tk.Button(mainUI)
         self.takeBackupBtn.place(relx=0.15, rely=0.775, height=33, width=200)
         self.takeBackupBtn.configure(activebackground="#ececec")
         self.takeBackupBtn.configure(activeforeground="#000000")
@@ -155,49 +155,49 @@ class mainframe:
         self.takeBackupBtn.configure(pady="0")
         self.takeBackupBtn.configure(text='''Take Backup''')
 
-        userVar = tk.StringVar(top, "User")
-        adminVar = tk.StringVar(top, "Admin")
+        userVar = tk.StringVar(mainUI, "User")
+        adminVar = tk.StringVar(mainUI, "Admin")
         self.style.map('TRadiobutton', background=[('selected', _bgcolor), ('active', _ana2color)])
-        self.radioAdmin = ttk.Radiobutton(top)
+        self.radioAdmin = ttk.Radiobutton(mainUI)
         self.radioAdmin.place(relx=0.65, rely=0.375, relwidth=0.091
                               , relheight=0.0, height=26)
         self.radioAdmin.configure(text='''Admin''')
         self.radioAdmin.configure(value=1)
         self.radioAdmin.configure(variable=adminVar)
 
-        self.radioUser = ttk.Radiobutton(top)
+        self.radioUser = ttk.Radiobutton(mainUI)
         self.radioUser.place(relx=0.775, rely=0.375, relwidth=0.091
                              , relheight=0.0, height=26)
         self.radioUser.configure(text='''User''')
         self.radioUser.configure(variable=userVar)
         self.radioUser.configure(value=2)
 
-        self.userEntry = ctk.EntryCustom(top, "UserName")
+        self.userEntry = ctk.EntryCustom(mainUI, "UserName")
         self.userEntry.place(relx=0.65, rely=0.45, relheight=0.065
                              , relwidth=0.221)
         self.userEntry.configure(takefocus="")
         self.userEntry.configure(cursor="ibeam")
 
-        self.passwordEntry = ctk.EntryCustom(top, "Password")
+        self.passwordEntry = ctk.EntryCustom(mainUI, "Password")
         self.passwordEntry.place(relx=0.65, rely=0.525, relheight=0.065
                                  , relwidth=0.221)
         self.passwordEntry.configure(takefocus="")
         self.passwordEntry.configure(show='*')
         self.passwordEntry.configure(cursor="ibeam")
 
-        self.calendarStart = DateEntry(top)
+        self.calendarStart = DateEntry(mainUI)
         self.calendarStart.place(relx=0.65, rely=0.6, relheight=0.065
                                  , relwidth=0.221)
         self.calendarStart.configure(takefocus="")
         self.calendarStart.configure(cursor="ibeam")
 
-        self.calendarEnd = DateEntry(top)
+        self.calendarEnd = DateEntry(mainUI)
         self.calendarEnd.place(relx=0.65, rely=0.675, relheight=0.065
                                , relwidth=0.221)
         self.calendarEnd.configure(takefocus="")
         self.calendarEnd.configure(cursor="ibeam")
 
-        self.loginBtn = tk.Button(top)
+        self.loginBtn = tk.Button(mainUI)
         self.loginBtn.place(relx=0.65, rely=0.775, height=33, width=176)
         self.loginBtn.configure(activebackground="#ececec")
         self.loginBtn.configure(activeforeground="#000000")
