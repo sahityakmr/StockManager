@@ -1,5 +1,5 @@
 import ui.mainframe as mainframe
-import utils.logger_support
+import babel.numbers
 
 old_file = False
 

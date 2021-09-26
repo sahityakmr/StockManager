@@ -29,3 +29,4 @@ class ConfigManager:
         if ConfigManager.instance is None:
             ConfigManager()
         return ConfigManager.instance
+
