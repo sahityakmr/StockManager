@@ -1,4 +1,4 @@
 /build/**
-/.idea/
+/.idea/**
 /dist/**
 /main.spec
