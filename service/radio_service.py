@@ -1,11 +1,11 @@
 def radio_action(adminVar):
     # selection = "You selected the option " + str(adminVar)
     # print(selection)
-    if adminVar=="1":
+    if adminVar=="user_type_admin":
         selection = "You selected the option " + str(adminVar)
         print(selection)
         return
-    if adminVar=="2":
+    if adminVar=="user_type_user":
         selection = "You selected the option " + str(adminVar)
         print(selection)
         return
