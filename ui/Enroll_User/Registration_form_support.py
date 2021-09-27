@@ -112,11 +112,11 @@ def destroy_window():
 def radio_gender(genderVar):
     if genderVar == "male":
         selection = "You selected the option " + str(genderVar)
-        print(selection)
+
         return
     if genderVar == "female":
         selection = "You selected the option " + str(genderVar)
-        print(selection)
+
         return
     else:
         print("error")
