@@ -17,7 +17,6 @@ except ImportError:
 import ui.mainframe_support as mainframe_support
 from tkcalendar import DateEntry
 from ui.custom import custom_elements as ctk
-import service.radio_service
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -162,14 +161,14 @@ class mainframe:
         self.radioAdmin.configure(text='''Admin''')
         self.radioAdmin.configure(variable=adminVar)
         self.radioAdmin.configure(value="user_type_admin")
-        self.radioAdmin.configure(command=lambda:service.radio_service.radio_action(adminVar.get()))
+        self.radioAdmin.configure(command=lambda:mainframe_support.radio_action(adminVar.get()))
         self.radioUser = ttk.Radiobutton(mainUI)
         self.radioUser.place(relx=0.775, rely=0.375, relwidth=0.091
                              , relheight=0.0, height=26)
         self.radioUser.configure(text='''User''')
         self.radioUser.configure(variable=adminVar)
         self.radioUser.configure(value="user_type_user")
-        self.radioUser.configure(command=lambda:service.radio_service.radio_action(adminVar.get()))
+        self.radioUser.configure(command=lambda:mainframe_support.radio_action(adminVar.get()))
 
         self.userEntry = ctk.EntryCustom(mainUI, "UserName")
         self.userEntry.place(relx=0.65, rely=0.45, relheight=0.065

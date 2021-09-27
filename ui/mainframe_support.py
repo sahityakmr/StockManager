@@ -74,6 +74,19 @@ def login(username, password):
         print("Login Failed")
 
 
+def radio_action(adminVar):
+    if adminVar=="user_type_admin":
+        selection = "You selected the option " + str(adminVar)
+        print(selection)
+        return
+    if adminVar=="user_type_user":
+        selection = "You selected the option " + str(adminVar)
+        print(selection)
+        return
+    else:
+        print("error")
+
+
 def takeBackup():
     print('mainframe_support.takeBackup')
     sys.stdout.flush()
