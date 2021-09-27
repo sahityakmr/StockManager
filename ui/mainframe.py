@@ -18,7 +18,6 @@ import ui.mainframe_support as mainframe_support
 from tkcalendar import DateEntry
 from ui.custom import custom_elements as ctk
 
-
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, window, root
@@ -154,23 +153,22 @@ class mainframe:
         self.takeBackupBtn.configure(highlightcolor="black")
         self.takeBackupBtn.configure(pady="0")
         self.takeBackupBtn.configure(text='''Take Backup''')
-
-        userVar = tk.StringVar(mainUI, "User")
-        adminVar = tk.StringVar(mainUI, "Admin")
         self.style.map('TRadiobutton', background=[('selected', _bgcolor), ('active', _ana2color)])
+
+        user_type = tk.StringVar(mainUI, "UserType")
         self.radioAdmin = ttk.Radiobutton(mainUI)
-        self.radioAdmin.place(relx=0.65, rely=0.375, relwidth=0.091
-                              , relheight=0.0, height=26)
+        self.radioAdmin.place(relx=0.65, rely=0.375, relwidth=0.091, relheight=0.0, height=26)
         self.radioAdmin.configure(text='''Admin''')
-        self.radioAdmin.configure(value=1)
-        self.radioAdmin.configure(variable=adminVar)
+        self.radioAdmin.configure(variable=user_type)
+        self.radioAdmin.configure(value="user_type_admin")
+        self.radioAdmin.configure(command=lambda: mainframe_support.chooseUserType(user_type.get()))
 
         self.radioUser = ttk.Radiobutton(mainUI)
-        self.radioUser.place(relx=0.775, rely=0.375, relwidth=0.091
-                             , relheight=0.0, height=26)
+        self.radioUser.place(relx=0.775, rely=0.375, relwidth=0.091, relheight=0.0, height=26)
         self.radioUser.configure(text='''User''')
-        self.radioUser.configure(variable=userVar)
-        self.radioUser.configure(value=2)
+        self.radioUser.configure(variable=user_type)
+        self.radioUser.configure(value="user_type_user")
+        self.radioUser.configure(command=lambda: mainframe_support.chooseUserType(user_type.get()))
 
         self.userEntry = ctk.EntryCustom(mainUI, "UserName")
         self.userEntry.place(relx=0.65, rely=0.45, relheight=0.065
@@ -179,8 +177,7 @@ class mainframe:
         self.userEntry.configure(cursor="ibeam")
 
         self.passwordEntry = ctk.EntryCustom(mainUI, "Password")
-        self.passwordEntry.place(relx=0.65, rely=0.525, relheight=0.065
-                                 , relwidth=0.221)
+        self.passwordEntry.place(relx=0.65, rely=0.525, relheight=0.065, relwidth=0.221)
         self.passwordEntry.configure(takefocus="")
         self.passwordEntry.configure(show='*')
         self.passwordEntry.configure(cursor="ibeam")
@@ -202,7 +199,7 @@ class mainframe:
         self.loginBtn.configure(activebackground="#ececec")
         self.loginBtn.configure(activeforeground="#000000")
         self.loginBtn.configure(background="#d9d9d9")
-        self.loginBtn.configure(command=lambda: mainframe_support.login(self.userEntry.get(), self.passwordEntry.get()))
+        self.loginBtn.configure(command=mainframe_support.login)
         self.loginBtn.configure(cursor="fleur")
         self.loginBtn.configure(disabledforeground="#a3a3a3")
         self.loginBtn.configure(foreground="#000000")

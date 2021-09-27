@@ -25,6 +25,8 @@ logger = logging.getLogger("mainframe_support")
 configService = ConfigService.getInstance()
 userService = UserService.getInstance()
 
+userLoginMode = None
+
 
 def set_Tk_var():
     global selectedButton
@@ -32,8 +34,9 @@ def set_Tk_var():
 
 
 def initViews():
-    # w.userEntry.configure(state='disabled')
-    # w.passwordEntry.configure(state='disabled')
+    window.userEntry.configure(state='disabled')
+    window.passwordEntry.configure(state='disabled')
+    window.loginBtn.configure(state='disabled')
     logger.debug(configService.getConfig("resources.logo_res"))
     logo_image = Image.open(configService.getConfig("resources.logo_res"))
     resized_image = ImageTk.PhotoImage(logo_image.resize((100, 100), Image.ANTIALIAS))
@@ -65,13 +68,37 @@ def enrollUser():
     sys.stdout.flush()
 
 
-def login(username, password):
+def login():
+    username = window.userEntry.get()
+    password = window.passwordEntry.get()
+    user_type = userLoginMode
+    start_date = str(window.calendarStart.get_date())
+    end_date = str(window.calendarEnd.get_date())
     user = userService.getUser(username, password)
-    logger.debug(str("Trying to login using username : %s and password : %s" % (username, password)))
+    logger.debug(
+        str("Trying to login using username : %s, password : %s, user_type : %s, start_date : %s, end_date : %s" %
+            (username, password, user_type, start_date, end_date)))
     if user is not None:
         print("Login Success")
     else:
         print("Login Failed")
+
+
+def triggerUIChanges():
+    global window
+    window.userEntry.configure(state='normal')
+    window.passwordEntry.configure(state='normal')
+    window.loginBtn.configure(state='normal')
+
+
+def chooseUserType(user_type):
+    global userLoginMode
+    if user_type == "user_type_admin":
+        userLoginMode = "ADMIN"
+    elif user_type == "user_type_user":
+        userLoginMode = "USER"
+    if userLoginMode is not None:
+        triggerUIChanges()
 
 
 def takeBackup():
