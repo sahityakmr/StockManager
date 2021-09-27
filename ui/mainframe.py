@@ -53,7 +53,7 @@ def destroy_mainframe():
 class mainframe:
     def __init__(self, mainUI=None):
         '''This class configures and populates the toplevel window.
-           top is the toplevel containing window.'''
+           user_enroll is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
         _compcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -131,15 +131,14 @@ class mainframe:
         self.deleteUserBtn.configure(activebackground="#ececec")
         self.deleteUserBtn.configure(activeforeground="#000000")
         self.deleteUserBtn.configure(background="#d9d9d9")
-        self.deleteUserBtn.configure(command=mainframe_support.deleteUser)
+        self.deleteUserBtn.configure(command=mainframe_support.modify_user)
         self.deleteUserBtn.configure(cursor="fleur")
         self.deleteUserBtn.configure(disabledforeground="#a3a3a3")
         self.deleteUserBtn.configure(foreground="#000000")
         self.deleteUserBtn.configure(highlightbackground="#d9d9d9")
         self.deleteUserBtn.configure(highlightcolor="black")
         self.deleteUserBtn.configure(pady="0")
-        self.deleteUserBtn.configure(text='''Delete User''')
-
+        self.deleteUserBtn.configure(text='''Modify User''')
         self.takeBackupBtn = tk.Button(mainUI)
         self.takeBackupBtn.place(relx=0.15, rely=0.775, height=33, width=200)
         self.takeBackupBtn.configure(activebackground="#ececec")
