@@ -11,8 +11,7 @@ try:
 except ImportError:
     import tkinter.ttk as ttk
     py3 = True
-from ui.enroll_user import Registration_form_support as registration_form_support
-#autosave.tcl##_support
+from ui.enroll_user import registration_form_support as registration_form_support
 
 def vp_start_gui_registration():
     '''Starting point when module is the main routine.'''

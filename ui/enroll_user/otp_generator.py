@@ -2,7 +2,7 @@ import math
 import smtplib
 
 import tk
-from ui.enroll_user import Registration_form_support as registration_form
+from ui.enroll_user import registration_form_support as registration_form
 
 def create_otp(OTP_p):
     global OTPp

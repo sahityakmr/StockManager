@@ -56,20 +56,20 @@ def approve():
 
 
 def modify_user():
-        global viewform10
-        viewform10 = tk.Toplevel()
-        viewform10.title("MEENA STOCK /View Product")
+        global viewform
+        viewform = tk.Toplevel()
+        viewform.title("MEENA STOCK /View Product")
         width = 700
         height = 400
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
         x = (screen_width / 2) - (width / 2)
         y = (screen_height / 2) - (height / 2)
-        viewform10.geometry("%dx%d+%d+%d" % (width, height, x, y))
+        viewform.geometry("%dx%d+%d+%d" % (width, height, x, y))
         # viewform10.resizable(0, 0)
-        ViewForm10()
+        ViewForm()
 
-def ViewForm10():
+def ViewForm():
         global treee, SEARCH
         SEARCH=tk.StringVar()
         TopViewForm = tk.Frame(viewform10, width=600, bd=1, relief=tk.SOLID)

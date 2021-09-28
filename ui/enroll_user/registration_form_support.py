@@ -1,13 +1,15 @@
 import logging
 from idlelib.idle_test.test_browser import mb
+from tkinter import filedialog as fd
 from tkinter.messagebox import showinfo
-from tkinter import filedialog as fd, messagebox
-from service.config_service import ConfigService
-from ui.enroll_user import otp_generator as otp
+
 from PIL import ImageTk
 from PIL.Image import Image
 
-logger = logging.getLogger("Registration_form_support")
+from service.config_service import ConfigService
+from ui.enroll_user import otp_generator as otp
+
+logger = logging.getLogger("registration_form_support")
 
 configService = ConfigService.getInstance()
 
@@ -35,12 +37,12 @@ def otp():
     otp.create_otp()
 
 
-def register(OTP_p,FNAME):
+def register(OTP_p, FNAME):
     if OTP_p.get() == "":
         mb.showinfo('Information', "Please Enter otp")
         return
-    if FNAME.get() == "": #or LNAME.get() == "" or USERID.get() == "" or PASS.get() == "":
-        #lbl_result.config(text="Please Fill all the Details", fg="red")
+    if FNAME.get() == "":  # or LNAME.get() == "" or USERID.get() == "" or PASS.get() == "":
+        # lbl_result.config(text="Please Fill all the Details", fg="red")
         print("7")
         return
     else:
@@ -60,8 +62,8 @@ def initViews():
     logger.debug(configService.getConfig("resources.logo_res"))
     logo_image = Image.open(configService.getConfig("resources.logo_res"))
     resized_image = ImageTk.PhotoImage(logo_image.resize((100, 100), Image.ANTIALIAS))
-    w.Canvas1.image = resized_image
-    w.Canvas1.create_image(0, 0, image=resized_image, anchor='ne')
+    w.Canvas_image.configure.image = resized_image
+    w.Canvas_image.configure.create_image(0, 0, image=resized_image, anchor='ne')
 
 
 def init(top, gui, *args, **kwargs):
@@ -120,7 +122,6 @@ def upload():
         #             bd = ff.read()
         #         cursor.execute('''insert into test(image,bill_number) values(%s,%s)''', (bd, billl))
         #         conn.commit()
-        #
         mb.showinfo("File uploaded succesfully")
     except IOError as err:
         image_selected = False
