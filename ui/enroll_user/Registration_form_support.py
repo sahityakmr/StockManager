@@ -122,9 +122,6 @@ def upload():
         #         conn.commit()
         #
         mb.showinfo("File uploaded succesfully")
-    #
-    #
-    #
     except IOError as err:
         image_selected = False
         mb.showinfo("File Error", err)
