@@ -3,7 +3,7 @@ import sys
 
 from service.user_service import UserService
 from service.config_service import ConfigService
-from ui.Enroll_User import registration_form as registration_form
+from ui.enroll_user import registration_form as registration_form
 try:
     import Tkinter as tk
 except ImportError:

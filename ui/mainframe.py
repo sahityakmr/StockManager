@@ -46,7 +46,7 @@ def create_mainframe(rt, *args, **kwargs):
 
 def destroy_mainframe():
     global window
-    w.destroy()
+    root.destroy()
     w = None
 
 
